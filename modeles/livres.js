@@ -64,8 +64,10 @@ module.exports.getLivreById = (idLivre, callback) => {
 };
 
 module.exports.getLivreByTitre = (titre, callback) => {
-    let query = {"titre": titre}
-    Livres.find(query, callback);
+    let query = { "titre": { $regex: titre, $options: "i" } };
+    //Livres.find(query, callback);
+    let trier = {pages: -1, limit: 1};
+    Livres.findOne(query).sort(trier).exec(callback);
 };
 
 //ajouter un livre dans la bd
@@ -74,14 +76,14 @@ module.exports.ajouterLivre = (livre, callback) => {
 }
 
 //supprimer un livre
-module.exports.deleteLivre = (idLivre, callback) =>{
-    var query = {"_id": idLivre};
+module.exports.deleteLivre = (idLivre, callback) => {
+    var query = { "_id": idLivre };
     Livres.remove(query, callback);
 }
 
 //modifier un livre
-module.exports.updateLivre = (idLivre, livre ,callback) =>{
-    var query = {"_id": idLivre};
+module.exports.updateLivre = (idLivre, livre, callback) => {
+    var query = { "_id": idLivre };
     var options = {};
     var nouveauLivre = {
         _id: livre._id,
