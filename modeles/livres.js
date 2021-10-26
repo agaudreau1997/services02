@@ -1,3 +1,4 @@
+const { query } = require("express");
 const mongoose = require("mongoose");
 
 // schema de donnees pour les livres
@@ -43,6 +44,10 @@ let schemaLivre = mongoose.Schema({
     genre: {
         type: String,
         required: true
+    },
+    url_image: {
+        type: String,
+        required: true
     }
 });
 
@@ -56,6 +61,11 @@ module.exports.getLivres = (callback, limit) => {
 
 module.exports.getLivreById = (idLivre, callback) => {
     Livres.findById(idLivre, callback);
+};
+
+module.exports.getLivreByTitre = (titre, callback) => {
+    let query = {"titre": titre}
+    Livres.find(query, callback);
 };
 
 //ajouter un livre dans la bd
@@ -83,7 +93,8 @@ module.exports.updateLivre = (idLivre, livre ,callback) =>{
         langue: livre.langue,
         date: livre.date,
         prix: livre.prix,
-        genre: livre.genre
+        genre: livre.genre,
+        url_image: livre.url_image
     }
     Livres.findOneAndUpdate(query, nouveauLivre, options, callback);
 }

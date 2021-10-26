@@ -21,4 +21,3 @@ app.get("/", (requete, reponse) =>{
     reponse.send("utilisez api/livres pour acceder a l'api livres <br>utilisez api/clients pour acceder a l'api clients <br>utilisez api/genres pour acceder a l'api genres <br>");
 })
 app.listen(8000, ()=> console.log("serveur démarré sur le port 8000"));
-

@@ -10,6 +10,14 @@ router.get("/", (requete, reponse) => {
     }, 25)
 })
 
+router.get("/titre/:titre", (requete, reponse) => {
+    //cherche un livre par titre
+    Livres.getLivreByTitre(requete.params.titre, (err, livres) => {
+        if (err) throw err;
+        reponse.json(livres);
+    });
+});
+
 router.get("/:idLivre", (requete, reponse) => {
     //requete a mongodb pour chercher un seul livre
     Livres.getLivreById(requete.params.idLivre, (err, livres) => {

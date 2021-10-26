@@ -1,0 +1,25 @@
+GET http://localhost:8000/api/livres
+
+###
+GET http://localhost:8000/api/livres/12345
+
+###
+POST http://localhost:8000/api/livres
+Content-Type: application/json
+
+{
+  "_id": "123",
+  "titre": "Oyasus Punpun",
+  "auteur": "Inio Asano",
+  "résumé": "Love you",
+  "prix": 42,
+  "éditeur": "Viz",
+  "pages": 42,
+  "langue": "English",
+  "date": "2021-04-12",
+  "genre": "drame",
+  "url_image": "https://images.archambault.ca/images/PG/1233/1233967-gf.jpg?404=default&w=400"
+}
+
+###
+GET http://localhost:8000/api/livres/titre/Flots
