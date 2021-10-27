@@ -64,17 +64,31 @@
 
         function affichageLivre(data) {
             let elementDiv = document.getElementById("resultat");
-            let titres = data.map(val => val.titre);
-            
-            let innerOl = "<ol>";
-            let i = 0;
-            titres.map(val => {
-                innerOl += "<li>" + titres[i] + "</li>";
-                i++;
-            })
-            innerOl += "</ol>"
+            //let titres = data.map(val => val.titre);
+            let titres = data.map(val => {
+                if(val.pages == null){
+                    return `    <li>${val.titre}
+                                <ul> 
+                                    <li>${val.auteur}</li>
+                                    <li>${val.éditeur}</li>
+                                    <li>${val.résumé}</li>
+                                </ul>
+                            </li>`;
+                } else {
+                    return `    <li>${val.titre}
+                                <ul> 
+                                    <li>${val.auteur}</li>
+                                    <li>${val.éditeur}</li>
+                                    <li>${val.résumé}</li>
+                                    <li>${val.pages}</li>
+                                </ul>
+                            </li>`;
+                }
 
-            elementDiv.innerHTML = innerOl;
+            })
+            titres = "<ul>" + titres + "</ul>";
+            titres = titres.replace(/,/g, "")
+            elementDiv.innerHTML = titres;
         }
     </script>
 </body>
